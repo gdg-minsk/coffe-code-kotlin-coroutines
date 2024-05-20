@@ -8,26 +8,30 @@ suspend fun main() {
     coroutineScope {
         launch {
             fetchTwoFiles3()
-            println("0")
+            println("B")
         }
+        println("A")
     }
+
+    println("End")
 }
 
 suspend fun fetchTwoFiles3() {
     coroutineScope {
         launch { fetchFile31() }
         launch { fetchFile32() }
+        println("C")
     }
 }
 
 suspend fun fetchFile31() {
-    println("1-1")
+    println("D")
     delay(3_000)
-    println("1-2")
+    println("E")
 }
 
 suspend fun fetchFile32() {
-    println("2-1")
+    println("F")
     delay(3_000)
-    println("2-2")
+    println("G")
 }

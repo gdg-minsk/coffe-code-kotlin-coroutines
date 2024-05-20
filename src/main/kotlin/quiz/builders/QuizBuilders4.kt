@@ -3,14 +3,26 @@ package quiz.builders
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 suspend fun main() {
     coroutineScope {
         launch {
             fetchTwoFiles4()
-            println("both files downloaded")
+            println("B")
+        }
+        println("A")
+    }
+
+    println("Middle")
+
+    runBlocking {
+        launch {
+            fetchTwoFiles4()
         }
     }
+
+    println("End")
 }
 
 suspend fun fetchTwoFiles4() {
@@ -19,13 +31,13 @@ suspend fun fetchTwoFiles4() {
 }
 
 suspend fun fetchFile41() {
-    println("starting download file1")
+    println("C")
     delay(3_000)
-    println("file1 download finished")
+    println("D")
 }
 
 suspend fun fetchFile42() {
-    println("starting download file2")
+    println("E")
     delay(3_000)
-    println("file2 download finished")
+    println("F")
 }

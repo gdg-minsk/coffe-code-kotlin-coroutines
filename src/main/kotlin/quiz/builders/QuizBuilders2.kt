@@ -3,14 +3,17 @@ package quiz.builders
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 suspend fun main() {
     coroutineScope {
         launch {
             fetchTwoFiles()
-            println("0")
+            println("B")
         }
     }
+
+    println("A")
 }
 
 suspend fun fetchTwoFiles() {
@@ -19,13 +22,13 @@ suspend fun fetchTwoFiles() {
 }
 
 suspend fun fetchFile1() {
-    println("1-1")
+    println("C")
     delay(3_000)
-    println("1-2")
+    println("D")
 }
 
 suspend fun fetchFile2() {
-    println("2-1")
+    println("E")
     delay(3_000)
-    println("2-2")
+    println("F")
 }

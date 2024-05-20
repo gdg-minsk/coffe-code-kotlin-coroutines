@@ -8,22 +8,30 @@ import kotlinx.coroutines.runBlocking
 suspend fun main() {
     coroutineScope {
         val first = async {
-            println("1")
+            println("C")
             delay(100)
+            println("D")
+
             "First Async"
         }
 
-
         val second = async {
-            println("2")
+            println("E")
             delay(400)
+            println("F")
+
             "Second Async"
         }
 
         runBlocking {
+            println("G")
             delay(300)
-            println("3")
+
+            println("H")
             println("${first.await()} ${second.await()}")
         }
+
+        println("B")
     }
+    println("A")
 }
