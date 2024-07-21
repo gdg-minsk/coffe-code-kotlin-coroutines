@@ -13,10 +13,10 @@ import kotlinx.coroutines.launch
  * EDUCATIVE!!
  */
 
-//suspend fun main(): Unit = coroutineScope {
-//    launch {
-//        delay(2000L)
-//        println("EDUCATIVE!!")
-//    }
-//    println("Educative !")
-//}
+suspend fun main(): Unit = coroutineScope {
+    launch {
+        delay(2000L)
+        println("EDUCATIVE!!")
+    }
+    println("Educative !")
+}
