@@ -8,22 +8,22 @@ suspend fun main() {
     coroutineScope {
         launch {
             launch {
-                println("C")
+                println("A")
             }
             coroutineScope {
                 launch {
                     delay(500)
-                    println("D")
+                    println("B")
                 }
 
                 delay(100)
-                println("E")
+                println("C")
             }
 
-            println("F")
+            println("D")
         }
-        println("B")
+        println("E")
     }
 
-    println("A")
+    println("F")
 }
