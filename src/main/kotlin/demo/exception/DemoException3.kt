@@ -1,23 +1,22 @@
 package demo.exception
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 
 suspend fun main() {
-    val scope = CoroutineScope(SupervisorJob())
+    val scope = CoroutineScope(Job())
 
     val deferredResult = scope.async {
         throw RuntimeException("RuntimeException in async coroutine")
     }
 
-    val job = scope.launch {
-        try {
-            deferredResult.await()
-        } catch (exception: Exception) {
-            println("Handle $exception in try/catch")
-        }
+    try {
+        deferredResult.await()
+    } catch (exception: Exception) {
+        println("Handle $exception in try/catch")
     }
-
-    println(job)
 
     delay(1000L)
 }

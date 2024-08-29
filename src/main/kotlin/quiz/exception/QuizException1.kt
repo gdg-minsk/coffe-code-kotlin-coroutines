@@ -7,7 +7,7 @@ import kotlinx.coroutines.runBlocking
 fun main(): Unit = runBlocking {
     try {
         launch {
-            delay(1000)
+            delay(100)
             throw Error("Some error")
         }
     } catch (e: Throwable) {
@@ -15,7 +15,7 @@ fun main(): Unit = runBlocking {
     }
 
     launch {
-        delay(2000)
+        delay(200)
         println("B")
     }
 }

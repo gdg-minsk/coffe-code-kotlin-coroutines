@@ -9,23 +9,23 @@ suspend fun main() {
     coroutineScope {
         launch {
             delay(200L)
-            println("1")
+            println("A")
         }
         coroutineScope {
             launch {
                 delay(500L)
-                println("2")
+                println("B")
             }
             val job = async {
-                delay(2000L)
-                println("3")
+                delay(700L)
+                println("C")
             }
             delay(100L)
-            println("4")
+            println("D")
 
             job.await()
         }
-        println("5")
+        println("E")
     }
-    println("6")
+    println("F")
 }

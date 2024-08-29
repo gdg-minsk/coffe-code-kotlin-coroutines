@@ -19,7 +19,6 @@ suspend fun main() {
                 delay(100)
                 println("C")
             }
-
             println("D")
         }
         println("E")
