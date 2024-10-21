@@ -1,30 +1,31 @@
 package demo.dispatchers
 
 import kotlinx.coroutines.*
-import kotlin.coroutines.Continuation
-import kotlin.coroutines.resume
+import kotlin.system.measureTimeMillis
 
-@OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
-suspend fun main(): Unit =
-    withContext(newSingleThreadContext("Thread1")) {
-        var continuation: Continuation<Unit>? = null
+suspend fun main(): Unit = coroutineScope {
+    launch {
+        printCoroutinesTime(Dispatchers.IO)
+    }
 
-        launch(newSingleThreadContext("Thread2")) {
-            delay(1000)
-            continuation?.resume(Unit)
-        }
+    launch {
+        val dispatcher = Dispatchers.IO
+            .limitedParallelism(100)
+        printCoroutinesTime(dispatcher)
+    }
+}
 
-        launch(Dispatchers.Unconfined) {
-            println(Thread.currentThread().name) // Thread1
-
-            suspendCancellableCoroutine<Unit> {
-                continuation = it
+suspend fun printCoroutinesTime(
+    dispatcher: CoroutineDispatcher
+) {
+    val test = measureTimeMillis {
+        coroutineScope {
+            repeat(100) {
+                launch(dispatcher) {
+                    Thread.sleep(1000)
+                }
             }
-
-            println(Thread.currentThread().name) // Thread2
-
-            delay(1000)
-
-            println(Thread.currentThread().name)
         }
     }
+    println("$dispatcher took: $test")
+}

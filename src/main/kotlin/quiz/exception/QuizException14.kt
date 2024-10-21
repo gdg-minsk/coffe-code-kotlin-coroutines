@@ -1,32 +1,30 @@
+@file:Suppress("UNREACHABLE_CODE")
+
 package quiz.exception
 
 import demo.suspension.MyException
 import demo.suspension.delay
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 
 suspend fun main() {
-    val scope = CoroutineScope(SupervisorJob())
+    val scope = CoroutineScope(Job())
 
     val job = scope.async {
-        val job3 = async {
-            throw MyException()
-        }
-        delay(500L)
-
-        println("A")
+        throw MyException()
     }
 
     val job2 = scope.async {
-        delay(700L)
-        println("B")
+        delay(100L)
+        println("A")
     }
 
     job.await()
-    println("C")
+    println("B")
     job2.await()
 
-    delay(1000L)
-    println("D")
+    delay(500L)
+    println("C")
 }

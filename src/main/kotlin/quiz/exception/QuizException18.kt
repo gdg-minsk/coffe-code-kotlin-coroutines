@@ -4,27 +4,27 @@ import demo.suspension.MyException
 import demo.suspension.delay
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 suspend fun main() {
     val scope = CoroutineScope(Job())
 
-    val job = scope.async {
-        throw MyException()
-    }
+    scope.launch {
+        launch {
+            throw MyException()
+        }
+        delay(500L)
 
-    val job2 = scope.async {
-        delay(100L)
         println("A")
     }
 
-    try {
-        job.await()
-    } catch (e: Throwable) {
+    delay(100L)
+
+    scope.launch {
+        delay(700L)
         println("B")
     }
-    job2.await()
 
-    delay(500L)
+    delay(1000L)
     println("C")
 }

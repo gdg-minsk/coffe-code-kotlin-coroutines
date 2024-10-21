@@ -1,25 +1,26 @@
 package quiz.exception
 
 import demo.suspension.MyException
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 suspend fun main() {
     val scope = CoroutineScope(SupervisorJob())
 
     scope.launch {
-        val job = async {
-            throw MyException()
-        }
-
-        try {
-            job.await()
-        } catch (e: Throwable) {
-            println("A")
-        }
+        delay(200L)
+        println("A")
     }
 
-    delay(1000L)
-    println("B")
+    scope.launch {
+        delay(100L)
+        throw MyException()
+    }
+
+    delay(400L)
+    println("C")
 }
 
 

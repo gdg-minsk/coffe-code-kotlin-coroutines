@@ -1,33 +1,31 @@
-@file:OptIn(ExperimentalCoroutinesApi::class)
-
 package demo.dispatchers
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import kotlin.system.measureTimeMillis
 
 suspend fun main(): Unit = coroutineScope {
-    launch {
-        printCoroutinesTime(Dispatchers.IO)
-    }
+    println(Runtime.getRuntime().availableProcessors())
 
     launch {
-        val dispatcher = Dispatchers.IO
-            .limitedParallelism(100)
-        printCoroutinesTime(dispatcher)
+        printCoroutinesTime1(Dispatchers.Default)
     }
 }
 
-suspend fun printCoroutinesTime(
+private suspend fun printCoroutinesTime1(
     dispatcher: CoroutineDispatcher
 ) {
+
     val test = measureTimeMillis {
         coroutineScope {
-            repeat(100) {
+            repeat(10) {
                 launch(dispatcher) {
                     Thread.sleep(1000)
                 }
             }
         }
     }
-    println("$dispatcher took: $test")
+    println("#1 $dispatcher took: $test")
 }
