@@ -23,8 +23,11 @@ suspend fun main() {
         println("B")
     }
 
-    job.await()
-    println("C")
+    try {
+        job.await()
+    } catch (e: Throwable) {
+        println("C")
+    }
     job2.await()
 
     delay(1000L)

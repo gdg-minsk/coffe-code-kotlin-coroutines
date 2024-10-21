@@ -1,24 +1,16 @@
 package quiz.exception
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 
-fun main() {
-    val topLevelScope = CoroutineScope(Job())
+/**
+ * Write a code where end one coroutine with an exception and print it, and that exception
+ * will be thrown by await(). End another coroutine that will print “Hello World”
+ * Use the try and catch block for handling exceptions.
+ *
+ * Output:
+ * kotlinx.coroutines.app.MyException
+ * Hello World
+ */
+suspend fun main() {
 
-    topLevelScope.launch {
-        try {
-            coroutineScope {
-                launch {
-                    throw RuntimeException("RuntimeException in nested coroutine")
-                }
-            }
-        } catch (exception: Exception) {
-            println("Handle $exception in try/catch")
-        }
-    }
-
-    Thread.sleep(100)
 }
+

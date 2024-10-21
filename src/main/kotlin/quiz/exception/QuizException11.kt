@@ -1,25 +1,24 @@
 package quiz.exception
 
-import demo.suspension.MyException
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
-suspend fun main() {
-    val scope = CoroutineScope(SupervisorJob())
+fun main() {
+    val topLevelScope = CoroutineScope(Job())
 
-    scope.launch {
-        val job = async {
-            throw MyException()
-        }
-
+    topLevelScope.launch {
         try {
-            job.await()
-        } catch (e: Throwable) {
-            println("A")
+            coroutineScope {
+                launch {
+                    throw RuntimeException("RuntimeException in nested coroutine")
+                }
+            }
+        } catch (exception: Exception) {
+            println("Handle $exception in try/catch")
         }
-
-        println("B")
     }
 
-    delay(1000L)
-    println("C")
+    Thread.sleep(100)
 }

@@ -11,7 +11,7 @@ suspend fun main() = coroutineScope {
 
     try {
         deferred.await()
-    } catch (e: Exception) {
+    } catch (e: Throwable) {
         println("A")
     }
 

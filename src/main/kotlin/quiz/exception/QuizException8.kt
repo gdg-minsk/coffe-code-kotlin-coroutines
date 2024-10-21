@@ -1,18 +1,17 @@
 package quiz.exception
 
 import demo.suspension.MyException
-import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 suspend fun main() = coroutineScope {
-    val deferred = async {
-        throw MyException()
-    }
-
-    try {
-        deferred.await()
-    } catch (e: Exception) {
-        println("A")
+    launch {
+        try {
+            throw MyException()
+        } catch (e: Throwable) {
+            println(e)
+            println("A")
+        }
     }
 
     println("B")
