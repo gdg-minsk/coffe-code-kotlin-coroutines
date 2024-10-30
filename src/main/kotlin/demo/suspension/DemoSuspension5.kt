@@ -15,7 +15,7 @@ private val executor = Executors.newSingleThreadScheduledExecutor { runnable ->
         .apply { isDaemon = true }
 }
 
-suspend fun delay(timeMillis: Long): Unit =
+suspend fun internalDelay(timeMillis: Long): Unit =
     suspendCoroutine { cont ->
         executor.schedule(
             /* command = */ { cont.resume(Unit) },
@@ -27,7 +27,7 @@ suspend fun delay(timeMillis: Long): Unit =
 suspend fun main() {
     println("Before")
 
-    delay(1000)
+    internalDelay(1000)
 
     println("After")
 }

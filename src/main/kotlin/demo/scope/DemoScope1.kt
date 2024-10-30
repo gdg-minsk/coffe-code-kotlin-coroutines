@@ -1,6 +1,5 @@
 package demo.scope
 
-import demo.suspension.delay
 import kotlinx.coroutines.*
 
 fun CoroutineScope.log(text: String) {

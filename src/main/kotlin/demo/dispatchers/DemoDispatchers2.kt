@@ -1,9 +1,6 @@
 package demo.dispatchers
 
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlin.system.measureTimeMillis
 
 suspend fun main(): Unit = coroutineScope {

@@ -3,11 +3,7 @@
 package quiz.exception
 
 import demo.suspension.MyException
-import demo.suspension.delay
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.async
+import kotlinx.coroutines.*
 
 suspend fun main() {
     val scope = CoroutineScope(Job())

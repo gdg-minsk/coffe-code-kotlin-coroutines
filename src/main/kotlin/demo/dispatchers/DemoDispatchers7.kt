@@ -14,7 +14,7 @@ fun main() = runBlocking {
             counterV3++
         }
     }
-    println(counterV3) // 1000000
+    println(counterV3)
 }
 
 suspend fun massiveRunV3(action: suspend () -> Unit) =

@@ -6,9 +6,9 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 fun main() {
-    val topLevelScope = CoroutineScope(Job())
+    val scope = CoroutineScope(Job())
 
-    topLevelScope.launch {
+    scope.launch {
         try {
             coroutineScope {
                 launch {

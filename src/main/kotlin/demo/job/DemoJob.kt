@@ -1,10 +1,6 @@
 package demo.job
 
-import demo.suspension.delay
-import kotlinx.coroutines.CoroutineStart
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 suspend fun main() = coroutineScope {
     // Job created with a builder is active

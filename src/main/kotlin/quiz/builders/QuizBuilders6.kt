@@ -1,8 +1,8 @@
 package quiz.builders
 
-import demo.suspension.delay
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 
 suspend fun main() {
