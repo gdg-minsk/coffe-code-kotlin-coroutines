@@ -23,7 +23,7 @@ suspend fun main() {
         }
 
         launch {
-            delay(210)
+            delay(250)
             println("I got enough")
             job.cancel()
         }

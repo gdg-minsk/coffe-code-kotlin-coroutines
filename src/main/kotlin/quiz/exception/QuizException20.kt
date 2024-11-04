@@ -5,12 +5,10 @@ import kotlinx.coroutines.*
 
 suspend fun main() {
     val scope = CoroutineScope(Job())
-
     val job = scope.async {
         async {
             throw MyException()
         }
-
         delay(50L)
         println("A")
     }
@@ -26,7 +24,6 @@ suspend fun main() {
         println("C")
     }
     job2.await()
-
     delay(300L)
     println("D")
 }
