@@ -12,6 +12,6 @@ val flow1 = flow {
 suspend fun main(): Unit {
     flow1.onEach { println("A $it") }
         .catch { emit(0) }
-        .onEach { throw MyError() }
+        .onEach { throw Exception() }
         .collect { println("B $it") }
 }
